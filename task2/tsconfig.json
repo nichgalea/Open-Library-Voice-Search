@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "noImplicitAny": false,
+    "strict": true,
+    "target": "es2015",
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "allowUnreachableCode": false,
+    "allowUnusedLabels": false,
+    "allowSyntheticDefaultImports": true,
+    "forceConsistentCasingInFileNames": true,
+    "esModuleInterop": true,
+    "module": "commonjs",
+    "outDir": "../dist",
+    "sourceMap": true,
+    "lib": ["dom", "es2015", "es2015.promise", "es2017.object"]
+  },
+  "exclude": ["node_modules"]
+}

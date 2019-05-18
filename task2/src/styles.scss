@@ -1,0 +1,13 @@
+* {
+  box-sizing: border-box;
+  appearance: none;
+
+  &:active,
+  &:focus {
+    outline: none;
+  }
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+}

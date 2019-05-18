@@ -1,6 +1,11 @@
+import components from "./components";
+
+import { AppComponent } from "./components/app";
+
 import "./styles.scss";
 
-const hello = document.createElement("div");
-hello.innerText = "Hello World!";
+// define all custom elements
+components.forEach(c => window.customElements.define(c.selector, c));
 
-document.body.appendChild(hello);
+// attach root app component instance to DOM
+document.body.appendChild(new AppComponent());

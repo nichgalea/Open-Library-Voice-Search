@@ -14,7 +14,7 @@ export class SearchComponent extends HTMLElement {
   constructor(private onResults: (results: LibrarySearchResult) => void) {
     super();
 
-    this.handleInput = debounce(this.handleInput.bind(this), 350);
+    this.handleInput = debounce(this.handleInput.bind(this), 500);
     this.search = this.search.bind(this);
     this.updateLastSearch = this.updateLastSearch.bind(this);
     this.onVoiceResult = this.onVoiceResult.bind(this);

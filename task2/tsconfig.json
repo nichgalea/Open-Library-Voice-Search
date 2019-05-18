@@ -14,7 +14,7 @@
     "module": "commonjs",
     "outDir": "../dist",
     "sourceMap": true,
-    "lib": ["dom", "es2015", "es2015.promise", "es2017.object"]
+    "lib": ["dom", "es2015", "es2015.promise", "es2017.object", "dom.iterable"]
   },
   "exclude": ["node_modules"]
 }

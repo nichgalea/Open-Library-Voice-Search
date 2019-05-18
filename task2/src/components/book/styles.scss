@@ -1,0 +1,31 @@
+lib-book {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  max-width: 400px;
+}
+
+.cover {
+  flex: 0 0 200px;
+  height: 300px;
+  overflow: hidden;
+}
+
+.details {
+  flex: 0 0 200px;
+
+  .title {
+    color: gray;
+    margin: 0 0 8px 0;
+  }
+
+  p {
+    color: darkgray;
+    font-size: 12px;
+  }
+
+  .author {
+    margin: 0;
+    font-size: 14px;
+  }
+}

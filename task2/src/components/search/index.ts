@@ -11,7 +11,7 @@ export class SearchComponent extends HTMLElement {
   private lastSearchComponent: LastSearchComponent | null = null;
   private input!: HTMLInputElement;
 
-  constructor() {
+  constructor(private onResults: (results: LibrarySearchResult) => void) {
     super();
 
     this.handleInput = debounce(this.handleInput.bind(this), 350);
@@ -21,9 +21,7 @@ export class SearchComponent extends HTMLElement {
   }
 
   connectedCallback() {
-    const recordButton = new RecordButtonComponent(this.onVoiceResult);
-
-    this.append(this.renderSearchInput(), recordButton);
+    this.appendChild(this.renderSearchInput());
   }
 
   private renderSearchInput() {
@@ -34,7 +32,11 @@ export class SearchComponent extends HTMLElement {
     this.input.oninput = this.handleInput;
     this.input.onfocus = this.input.select;
 
-    return this.input;
+    const container = document.createElement("div");
+    container.className = styles.inputContainer;
+    container.append(this.input, new RecordButtonComponent(this.onVoiceResult));
+
+    return container;
   }
 
   private handleInput() {
@@ -49,9 +51,7 @@ export class SearchComponent extends HTMLElement {
 
       this.updateLastSearch();
 
-      bookService.search(trimmedValue).then(result => {
-        console.log(result.docs);
-      });
+      bookService.search(trimmedValue).then(this.onResults); // todo: handle error
     }
   }
 

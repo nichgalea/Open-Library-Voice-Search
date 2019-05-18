@@ -19,6 +19,7 @@ export class VoiceService {
     this.recognition.lang = "en-US";
     this.recognition.onresult = this.handleResult.bind(this);
     this.recognition.onerror = this.handleError.bind(this);
+    this.recognition.onend = this.recognition.stop;
   }
 
   private handleResult(event: SpeechRecognitionEvent) {
@@ -56,12 +57,7 @@ export class VoiceService {
   }
 
   stopListening(): void {
-    if (this.promiseResolve) {
-      this.recognition.stop();
-
-      this.promiseResolve(null);
-      this.promise = this.promiseResolve = this.promiseReject = null;
-    }
+    this.recognition.stop();
   }
 }
 

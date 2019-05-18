@@ -6,6 +6,8 @@ export class AppComponent extends HTMLElement {
   }
 
   connectedCallback() {
-    this.innerHTML = `Hello World`;
+    this.innerHTML = `
+      <lib-search></lib-search>
+    `;
   }
 }

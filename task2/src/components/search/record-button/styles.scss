@@ -1,0 +1,72 @@
+@keyframes pulse-button {
+  0% {
+    background: white;
+  }
+
+  50% {
+    background: crimson;
+  }
+
+  100% {
+    background: white;
+  }
+}
+
+@keyframes pulse-icon {
+  0% {
+    fill: crimson;
+  }
+
+  50% {
+    fill: white;
+  }
+
+  100% {
+    fill: crimson;
+  }
+}
+
+.mic {
+  position: absolute;
+  right: 0;
+}
+
+.mic-button {
+  border: 1px solid crimson;
+  border-radius: 18px;
+  background: white;
+  width: 36px;
+  height: 36px;
+  padding: 0;
+  cursor: pointer;
+
+  &:hover {
+    background: lighten(crimson, 10%);
+
+    svg {
+      fill: white;
+    }
+  }
+
+  &:active {
+    background: crimson;
+
+    svg {
+      fill: white;
+    }
+  }
+
+  svg {
+    fill: crimson;
+    height: 20px;
+    width: 20px;
+  }
+
+  &.mic-button-listening {
+    animation: pulse-button 1s infinite;
+
+    svg {
+      animation: pulse-icon 1s infinite;
+    }
+  }
+}

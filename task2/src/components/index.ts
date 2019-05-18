@@ -1,3 +1,2 @@
-import { AppComponent } from "./app";
-
-export default [AppComponent];
+export * from "./app";
+export * from "./search";

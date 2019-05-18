@@ -1,0 +1,27 @@
+lib-search {
+  position: absolute;
+  top: 30%;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-flow: row wrap;
+  align-items: center;
+  height: 36px;
+  width: 200px;
+  transition-property: top, width;
+  transition-duration: 350ms;
+  transition-timing-function: ease;
+
+  &.is-searching {
+    top: 8px;
+    width: calc(100% - 16px);
+  }
+}
+
+.search-input {
+  border: 1px solid lightgray;
+  height: 100%;
+  width: 100%;
+  border-radius: 18px;
+  padding: 0 40px 0 16px;
+}

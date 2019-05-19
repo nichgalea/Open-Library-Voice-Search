@@ -3,4 +3,10 @@ lib-last-search {
   font-size: 10px;
   margin: 4px 0 0 4px;
   color: gray;
+  opacity: 0;
+  transition: opacity 500ms ease-in;
+
+  &.show {
+    opacity: 1;
+  }
 }

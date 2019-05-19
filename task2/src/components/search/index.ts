@@ -53,7 +53,8 @@ export class SearchComponent extends HTMLElement {
 
   renderInstructions() {
     this.instructions = document.createElement("div");
-    this.instructions.innerHTML = '<p><b>Voice Search:</b> Say "Search for", followed by your query.</p>';
+    this.instructions.innerHTML =
+      '<p><b>Voice Search:</b> Click the mic button, then say "Search for", followed by your query.</p>';
     this.instructions.className = styles.instructions;
 
     return this.instructions;

@@ -24,7 +24,7 @@ lib-search {
   flex-flow: row wrap;
   align-items: center;
   height: 89px;
-  width: 330px;
+  width: 100%;
   padding: 8px;
   background: white;
   transition-property: top, width;
@@ -39,6 +39,13 @@ lib-search {
     .input-container {
       width: 100%;
     }
+
+    .instructions {
+      p {
+        transform: translateX(0);
+        left: 0;
+      }
+    }
   }
 }
 
@@ -50,7 +57,7 @@ lib-search {
   overflow: hidden;
 
   &.error {
-    animation: shake 500ms linear;
+    animation: shake 500ms ease;
 
     .search-input::placeholder {
       color: crimson;
@@ -81,5 +88,11 @@ lib-search {
   p {
     margin: 0;
     display: inline-block;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    transition-property: left, transform;
+    transition-duration: 350ms;
+    transition-timing-function: ease;
   }
 }

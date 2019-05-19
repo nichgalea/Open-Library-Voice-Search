@@ -1,4 +1,4 @@
-import "./styles.scss";
+import styles from "./styles.scss";
 
 export class LastSearchComponent extends HTMLElement {
   public static readonly selector = "lib-last-search";
@@ -15,6 +15,7 @@ export class LastSearchComponent extends HTMLElement {
 
   connectedCallback() {
     this.startUpdates();
+    this.classList.add(styles.show);
   }
 
   disconnectedCallback() {

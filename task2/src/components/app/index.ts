@@ -1,12 +1,12 @@
 import "./styles.scss";
 
+import { CarouselComponent, BookComponent } from "src/components";
 import { SearchComponent } from "../search";
-import { BookComponent } from "../book";
 
 export class AppComponent extends HTMLElement {
   public static readonly selector = "lib-app";
 
-  private resultContainer!: HTMLDivElement;
+  private carousel: CarouselComponent | null = null;
 
   constructor() {
     super();
@@ -15,19 +15,15 @@ export class AppComponent extends HTMLElement {
   }
 
   connectedCallback() {
-    this.appendChild(new SearchComponent(this.handleResult));
-    this.resultContainer = document.createElement("div");
-    this.appendChild(this.resultContainer);
+    this.append(new SearchComponent(this.handleResult));
   }
 
   private handleResult(result: LibrarySearchResult) {
-    this.clearResults();
-    this.resultContainer.append(...result.docs.map(b => new BookComponent(b)));
-  }
-
-  private clearResults() {
-    for (const child of this.resultContainer.children) {
-      child.remove();
+    if (!this.carousel) {
+      this.carousel = new CarouselComponent();
+      this.appendChild(this.carousel);
     }
+
+    this.carousel.items = result.docs.map(b => new BookComponent(b));
   }
 }

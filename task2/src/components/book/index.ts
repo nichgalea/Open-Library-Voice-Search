@@ -29,5 +29,3 @@ export class BookComponent extends HTMLElement {
     `;
   }
 }
-
-// 12 rules for life jordan peterson

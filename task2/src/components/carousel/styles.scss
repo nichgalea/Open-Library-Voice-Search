@@ -1,0 +1,12 @@
+lib-carousel {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+}
+
+.track {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  transition: left 350ms ease;
+}

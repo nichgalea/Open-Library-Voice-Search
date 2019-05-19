@@ -1,0 +1,11 @@
+lib-carousel-slide {
+  flex: 0 0 400px;
+
+  @media screen and (max-width: 720px) {
+    flex: 0 0 300px;
+  }
+
+  &:not(:first-child) {
+    margin-left: 16px;
+  }
+}

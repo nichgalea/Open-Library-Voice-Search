@@ -12,6 +12,7 @@ lib-search {
   transition-property: top, width;
   transition-duration: 350ms;
   transition-timing-function: ease;
+  z-index: 999;
 
   &.is-searching {
     top: 0;

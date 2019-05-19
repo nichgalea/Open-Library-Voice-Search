@@ -3,7 +3,7 @@ import styles from "./styles.scss";
 export class BookComponent extends HTMLElement {
   public static readonly selector = "lib-book";
 
-  get author(): string {
+  private get author(): string {
     return this.book.author_name ? this.book.author_name[0] : "Unknown";
   }
 

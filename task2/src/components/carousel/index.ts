@@ -4,6 +4,13 @@ import { CarouselSlideComponent } from "./slide";
 export class CarouselComponent extends HTMLElement {
   public static readonly selector = "lib-carousel";
 
+  private _slideDuration = 2500;
+  public set slideDuration(duration: number) {
+    this.stopMoving();
+    this._slideDuration = duration;
+    this.startMoving();
+  }
+
   private _currentIndex = 0;
   private set currentIndex(index: number) {
     this._currentIndex = index % this._items.length; // next or back to first
@@ -68,7 +75,9 @@ export class CarouselComponent extends HTMLElement {
   }
 
   private startMoving() {
-    this.intervalId = window.setInterval(this.next, 2500);
+    if (!this.intervalId) {
+      this.intervalId = window.setInterval(this.next, this._slideDuration);
+    }
   }
 
   private next() {

@@ -14,7 +14,11 @@ export class SearchComponent extends HTMLElement {
   private instructions!: HTMLDivElement;
   private inputContainer!: HTMLDivElement;
 
-  constructor(private onResults: (results: LibrarySearchResult) => void, private onError: () => void) {
+  constructor(
+    private onSearchStart: () => void,
+    private onResults: (results: LibrarySearchResult) => void,
+    private onError: () => void
+  ) {
     super();
 
     this.handleInput = debounce(this.handleInput.bind(this), 750);
@@ -71,6 +75,7 @@ export class SearchComponent extends HTMLElement {
     if (trimmedValue.length > 0) {
       this.className = styles.isSearching;
 
+      this.onSearchStart();
       this.updateLastSearch();
 
       bookService

@@ -1,12 +1,12 @@
 import styles from "./styles.scss";
 import cx from "classnames";
 
-import { CarouselComponent, BookComponent } from "src/components";
-import { SearchComponent } from "../search";
+import { CarouselComponent, BookComponent, SearchComponent, LoadingComponent } from "src/components";
 
 export class AppComponent extends HTMLElement {
   public static readonly selector = "lib-app";
 
+  private loading!: LoadingComponent;
   private information!: HTMLDivElement;
   private carousel: CarouselComponent | null = null;
 
@@ -15,17 +15,29 @@ export class AppComponent extends HTMLElement {
 
     this.handleResult = this.handleResult.bind(this);
     this.handleError = this.handleError.bind(this);
+    this.handleSearchStart = this.handleSearchStart.bind(this);
   }
 
   connectedCallback() {
     this.information = document.createElement("div");
     this.information.className = cx(styles.information, styles.hidden);
 
-    const search = new SearchComponent(this.handleResult, this.handleError);
-    this.append(search, this.information);
+    this.loading = new LoadingComponent();
+
+    this.append(
+      this.loading,
+      new SearchComponent(this.handleSearchStart, this.handleResult, this.handleError),
+      this.information
+    );
+  }
+
+  private handleSearchStart() {
+    this.loading.loading = true;
   }
 
   private handleResult(result: LibrarySearchResult) {
+    this.loading.loading = false;
+
     if (!this.carousel) {
       this.carousel = new CarouselComponent();
       this.appendChild(this.carousel);
@@ -42,6 +54,8 @@ export class AppComponent extends HTMLElement {
   }
 
   private handleError() {
+    this.loading.loading = false;
+
     if (this.carousel) {
       this.carousel.items = [];
     }

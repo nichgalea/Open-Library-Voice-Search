@@ -23,7 +23,11 @@ export class RecordButtonComponent extends HTMLElement {
     }
   }
 
-  constructor(private onResult: (result: string) => void) {
+  constructor(
+    private onNoCommand: () => void,
+    private onInvalidCommand: () => void,
+    private onResult: (result: string) => void
+  ) {
     super();
 
     this.handleClick = this.handleClick.bind(this);
@@ -55,14 +59,14 @@ export class RecordButtonComponent extends HTMLElement {
           if (result) {
             this.onResult(result);
           } else {
-            console.log("invalid command");
+            this.onInvalidCommand();
           }
         })
         .catch((speechError: SpeechRecognitionError) => {
           this.isListeningState = false;
 
           if (speechError.error === "no-speech") {
-            console.log("we didn't hear anything");
+            this.onNoCommand();
           }
         });
     }

@@ -1,24 +1,56 @@
 lib-book {
   display: flex;
-  flex-flow: row wrap;
+  flex-flow: row nowrap;
   justify-content: center;
   max-width: 400px;
   overflow: hidden;
+  height: 100%;
+
+  @media screen and (max-width: 720px) and (orientation: portrait) {
+    flex-flow: column nowrap;
+  }
 }
 
 .cover {
-  flex: 0 0 200px;
   height: 300px;
   overflow: hidden;
+  flex: 0 0 200px;
+  position: relative;
+
+  @media screen and (max-width: 720px) and (orientation: landscape) {
+    flex: 0 0 50%;
+  }
+
+  @media screen and (max-width: 720px) and (orientation: portrait) {
+    flex: 0 0 75%;
+  }
+
+  img {
+    width: 100%;
+  }
 }
 
 .details {
   flex: 0 0 200px;
   padding: 8px;
 
+  @media screen and (max-width: 720px) and (orientation: landscape) {
+    flex: 0 0 50%;
+  }
+
+  @media screen and (max-width: 720px) and (orientation: portrait) {
+    flex: 0 0 25%;
+  }
+
   .title {
     color: gray;
     margin: 0 0 8px 0;
+
+    @media screen and (max-width: 720px) and (orientation: portrait) {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
   }
 
   p {

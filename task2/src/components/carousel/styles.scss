@@ -1,7 +1,11 @@
 lib-carousel {
-  display: block;
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
   width: 100%;
+  height: calc(100vh - 89px);
   overflow: hidden;
+  padding: 16px 0;
 }
 
 .track {

@@ -38,34 +38,45 @@ export class CarouselComponent extends HTMLElement {
 
     this.next = this.next.bind(this);
     this.setTrackPosition = this.setTrackPosition.bind(this);
+    this.handleVisibilityChange = this.handleVisibilityChange.bind(this);
   }
 
   connectedCallback() {
     this.track = document.createElement("div");
     this.track.className = styles.track;
     this.appendChild(this.track);
-    window.addEventListener("resize", this.setTrackPosition);
+    window.addEventListener("resize", this.setTrackPosition as () => void);
+    window.addEventListener("visibilitychange", this.handleVisibilityChange);
   }
 
   disconnectedCallback() {
-    window.removeEventListener("resize", this.setTrackPosition);
-  }
-
-  private setTrackPosition() {
-    const halfChildWidth = this.slideWidth / 2;
-    const halfScreenWidth = window.innerWidth / 2;
-
-    const slideWidth = this.slideWidth + 16; // with left margin
-
-    const offset = halfScreenWidth - halfChildWidth - slideWidth * this._currentIndex;
-
-    this.track.style.left = `${offset}px`;
+    window.removeEventListener("resize", this.setTrackPosition as () => void);
+    window.removeEventListener("visibilitychange", this.handleVisibilityChange);
   }
 
   private setupTrack() {
     this.track.innerHTML = "";
     this.track.append(...this._items.map(i => new CarouselSlideComponent(i)));
-    this.setTrackPosition();
+    this.setTrackPosition(0);
+  }
+
+  private setTrackPosition(index = this._currentIndex) {
+    const halfChildWidth = this.slideWidth / 2;
+    const halfScreenWidth = window.innerWidth / 2;
+
+    const slideWidth = this.slideWidth + 16; // + margin between slides
+
+    const offset = halfScreenWidth - halfChildWidth - slideWidth * index;
+
+    this.track.style.left = `${offset}px`;
+
+    if (this.track.children[index]) {
+      const previousIndex = (index === 0 ? this._items.length : index) - 1;
+      const previous = <CarouselSlideComponent>this.track.children[previousIndex];
+      previous.active = false;
+
+      (<CarouselSlideComponent>this.track.children[index]).active = true;
+    }
   }
 
   private stopMoving() {
@@ -83,6 +94,14 @@ export class CarouselComponent extends HTMLElement {
 
   private next() {
     this.currentIndex = this._currentIndex + 1;
+  }
+
+  private handleVisibilityChange() {
+    if (document.hidden) {
+      this.stopMoving();
+    } else {
+      this.startMoving();
+    }
   }
 }
 

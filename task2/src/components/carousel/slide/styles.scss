@@ -1,5 +1,11 @@
 lib-carousel-slide {
   flex: 0 0 400px;
+  box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+  max-height: 100%;
+  padding: 8px;
+  overflow: hidden;
+  transition: transform 350ms ease;
+  transform: scale(0.9);
 
   @media screen and (max-width: 720px) {
     flex: 0 0 300px;
@@ -8,4 +14,8 @@ lib-carousel-slide {
   &:not(:first-child) {
     margin-left: 16px;
   }
+}
+
+.active {
+  transform: scale(1);
 }

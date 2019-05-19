@@ -20,6 +20,9 @@ export class VoiceService {
     this.recognition.onresult = this.handleResult.bind(this);
     this.recognition.onerror = this.handleError.bind(this);
     this.recognition.onend = this.recognition.stop;
+    this.recognition.onspeechend = this.recognition.stop;
+    this.recognition.onaudioend = this.recognition.stop;
+    this.recognition.onsoundend = this.recognition.stop;
   }
 
   private handleResult(event: SpeechRecognitionEvent) {

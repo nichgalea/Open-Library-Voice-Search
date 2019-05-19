@@ -22,6 +22,7 @@ export class CarouselComponent extends HTMLElement {
     this.stopMoving();
     this._items = items;
     this.setupTrack();
+    this.currentIndex = 0;
     this.startMoving();
   }
 

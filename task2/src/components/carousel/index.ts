@@ -39,18 +39,19 @@ export class CarouselComponent extends HTMLElement {
     this.next = this.next.bind(this);
     this.setTrackPosition = this.setTrackPosition.bind(this);
     this.handleVisibilityChange = this.handleVisibilityChange.bind(this);
+    this.handleResize = this.handleResize.bind(this);
   }
 
   connectedCallback() {
     this.track = document.createElement("div");
     this.track.className = styles.track;
     this.appendChild(this.track);
-    window.addEventListener("resize", this.setTrackPosition as () => void);
+    window.addEventListener("resize", this.handleResize);
     window.addEventListener("visibilitychange", this.handleVisibilityChange);
   }
 
   disconnectedCallback() {
-    window.removeEventListener("resize", this.setTrackPosition as () => void);
+    window.removeEventListener("resize", this.handleResize);
     window.removeEventListener("visibilitychange", this.handleVisibilityChange);
   }
 
@@ -69,6 +70,7 @@ export class CarouselComponent extends HTMLElement {
     const offset = halfScreenWidth - halfChildWidth - slideWidth * index;
 
     this.track.style.left = `${offset}px`;
+    console.log(offset);
 
     if (this.track.children[index]) {
       const previousIndex = (index === 0 ? this._items.length : index) - 1;
@@ -102,6 +104,10 @@ export class CarouselComponent extends HTMLElement {
     } else {
       this.startMoving();
     }
+  }
+
+  private handleResize() {
+    this.setTrackPosition();
   }
 }
 

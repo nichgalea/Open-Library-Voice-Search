@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
-    "start": "webpack-dev-server --config ./webpack.config.ts"
+    "start": "webpack-dev-server --config ./webpack.config.ts",
+    "test": "mocha --require ts-node/register **/*.spec.ts"
   },
   "repository": {
     "type": "git",
@@ -14,6 +15,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/classnames": "^2.2.7",
+    "@types/expect.js": "^0.3.29",
     "@types/html-webpack-plugin": "^3.2.0",
     "@types/lodash": "^4.14.129",
     "@types/webpack": "^4.4.31",
@@ -21,20 +23,23 @@
     "autoprefixer": "^9.5.1",
     "awesome-typescript-loader": "^5.2.1",
     "css-loader": "^2.1.1",
+    "expect.js": "^0.3.1",
     "html-webpack-plugin": "^3.2.0",
+    "mocha": "^6.1.4",
     "node-sass": "^4.12.0",
     "postcss-loader": "^3.0.0",
     "raw-loader": "^2.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "tar": ">=4.4.2",
     "ts-node": "^8.1.0",
     "typescript": "^3.4.5",
     "webpack": "^4.31.0",
     "webpack-cli": "^3.3.2",
-    "webpack-dev-server": "^3.3.1",
-    "tar": ">=4.4.2"
+    "webpack-dev-server": "^3.3.1"
   },
   "dependencies": {
+    "@types/mocha": "^5.2.6",
     "classnames": "^2.2.6",
     "lodash": "^4.17.11"
   }

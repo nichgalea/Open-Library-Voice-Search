@@ -19,6 +19,6 @@ For voice search, click on the microphone button and say the words "search for",
 
 This internally uses `SpeechRecognition`. Due to this it's recommended that this project is run on latest version of Chrome only.
 
-**Note:** `SpeechReconigition` is still an experimental API, and due to this, expected behaviour can happen; e.g. the speech input stops being received without any "end" (`onend`, `onspeechend`, `onaudioend`, etc.) events firing from the instance. In this case simply click on the microphone button until it starts flashing again.
+**Note:** `SpeechReconigition` is still an experimental API, and due to this, unexpected behaviour can happen; e.g. the speech input stops being received without any "end" (`onend`, `onspeechend`, `onaudioend`, etc.) events firing from the instance. In this case simply click on the microphone button until it starts flashing again.
 
 Also, `SpeechGrammarList` would have been useful to set predefined grammar for the `SpeechReconigition` API. This was not possible due to [this open issue](https://bugs.chromium.org/p/chromium/issues/detail?id=799849).
